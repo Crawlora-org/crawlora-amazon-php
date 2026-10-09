@@ -1,0 +1,303 @@
+{
+  "platform": "amazon",
+  "operationCount": 5,
+  "operationIds": [
+    "amazon-charts",
+    "amazon-charts-categories",
+    "amazon-product",
+    "amazon-search",
+    "amazon-suggest"
+  ],
+  "methods": {
+    "charts": "amazon-charts",
+    "charts_categories": "amazon-charts-categories",
+    "product": "amazon-product",
+    "search": "amazon-search",
+    "suggest": "amazon-suggest"
+  },
+  "operations": {
+    "amazon-charts": {
+      "id": "amazon-charts",
+      "method": "GET",
+      "path": "/amazon/charts",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "chart",
+          "in": "query",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "best_sellers",
+            "new_releases",
+            "most_wished_for"
+          ]
+        },
+        {
+          "name": "department",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "node",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "params": [
+        {
+          "description": "Chart type",
+          "enum": [
+            "best_sellers",
+            "new_releases",
+            "most_wished_for"
+          ],
+          "in": "query",
+          "name": "chart",
+          "required": true,
+          "type": "string",
+          "x-example": "best_sellers"
+        },
+        {
+          "description": "Amazon department slug",
+          "in": "query",
+          "name": "department",
+          "required": true,
+          "type": "string",
+          "x-example": "electronics"
+        },
+        {
+          "description": "Numeric browse node id",
+          "in": "query",
+          "name": "node",
+          "type": "string",
+          "x-example": "172541"
+        },
+        {
+          "description": "1-based page number",
+          "in": "query",
+          "name": "page",
+          "type": "integer",
+          "x-example": 1
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "amazon-charts-categories": {
+      "id": "amazon-charts-categories",
+      "method": "GET",
+      "path": "/amazon/charts/categories",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "chart",
+          "in": "query",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "best_sellers",
+            "new_releases",
+            "most_wished_for"
+          ]
+        },
+        {
+          "name": "department",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "node",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "params": [
+        {
+          "description": "Chart type",
+          "enum": [
+            "best_sellers",
+            "new_releases",
+            "most_wished_for"
+          ],
+          "in": "query",
+          "name": "chart",
+          "required": true,
+          "type": "string",
+          "x-example": "best_sellers"
+        },
+        {
+          "description": "Amazon department slug",
+          "in": "query",
+          "name": "department",
+          "type": "string",
+          "x-example": "electronics"
+        },
+        {
+          "description": "Numeric browse node id (requires department)",
+          "in": "query",
+          "name": "node",
+          "type": "string",
+          "x-example": "172541"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "amazon-product": {
+      "id": "amazon-product",
+      "method": "GET",
+      "path": "/amazon/product/{asin}",
+      "pathParams": [
+        "asin"
+      ],
+      "queryParams": [
+        {
+          "name": "language",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "en_US"
+          ]
+        },
+        {
+          "name": "currency",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "USD"
+          ]
+        }
+      ],
+      "params": [
+        {
+          "description": "Amazon ASIN",
+          "in": "path",
+          "name": "asin",
+          "required": true,
+          "type": "string",
+          "x-example": "B0DGJ736JM"
+        },
+        {
+          "default": "en_US",
+          "description": "Amazon language",
+          "enum": [
+            "en_US"
+          ],
+          "in": "query",
+          "name": "language",
+          "type": "string"
+        },
+        {
+          "default": "USD",
+          "description": "Amazon currency",
+          "enum": [
+            "USD"
+          ],
+          "in": "query",
+          "name": "currency",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "amazon-search": {
+      "id": "amazon-search",
+      "method": "GET",
+      "path": "/amazon/search",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "k",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "s",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "params": [
+        {
+          "description": "Search keyword",
+          "in": "query",
+          "name": "k",
+          "required": true,
+          "type": "string",
+          "x-example": "apple watch"
+        },
+        {
+          "description": "Sort order",
+          "in": "query",
+          "name": "s",
+          "type": "string",
+          "x-example": "review-rank"
+        },
+        {
+          "description": "1-based page number",
+          "in": "query",
+          "name": "page",
+          "type": "integer",
+          "x-example": 1
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "amazon-suggest": {
+      "id": "amazon-suggest",
+      "method": "GET",
+      "path": "/amazon/suggest/{keyword}",
+      "pathParams": [
+        "keyword"
+      ],
+      "queryParams": [],
+      "params": [
+        {
+          "description": "Suggestion prefix",
+          "in": "path",
+          "name": "keyword",
+          "required": true,
+          "type": "string",
+          "x-example": "apple"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    }
+  }
+}
